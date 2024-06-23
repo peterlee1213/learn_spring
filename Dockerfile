@@ -1,13 +1,12 @@
-FROM oraclelinux:9
+FROM ubuntu:22.04
 
-COPY * /app/
-
-RUN yum install wget
-RUN wget -P /root/ https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.rpm 
+RUN apt-get update && apt-get install wget -y && wget -P /root/ https://download.oracle.com/java/17/latest/jdk-17_linux-x64_bin.deb 
 
 WORKDIR /root
 
-RUN yum install ./jdk-17_linux-x64_bin.rpm 
+RUN apt-get install ./jdk-17_linux-x64_bin.deb 
+
+CMD [ "tail","-f","/dev/null" ]
 
 
 
